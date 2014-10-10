@@ -301,6 +301,14 @@ Hamster.normalise = {
     delta  = Math[fn](delta / lowestDelta);
     deltaX = Math[fn](deltaX / lowestDeltaXY);
     deltaY = Math[fn](deltaY / lowestDeltaXY);
+    
+    // Clearout lowestDelta after sometime to better
+    // handle multiple device types that give different
+    // a different lowestDelta
+    // Ex: trackpad = 3 and mouse wheel = 120
+    setTimeout(function(){
+      lowestDelta = null;
+    }, 200);
 
     return [delta, deltaX, deltaY];
   }
